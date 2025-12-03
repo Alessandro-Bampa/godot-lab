@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctts18vwepklq"]
+
+[ext_resource type="Script" uid="uid://cb8xqf2qqemct" path="res://player/Player.cs" id="1_oul6g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kqu6x"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CameraNode")]
+script = ExtResource("1_oul6g")
+CameraNode = NodePath("Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kqu6x")
+debug_color = Color(0, 0.6, 0.69803923, 0.4627451)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5126672, -0.415846)

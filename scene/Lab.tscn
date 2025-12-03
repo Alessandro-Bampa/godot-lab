@@ -1,3 +1,46 @@
-[gd_scene format=3 uid="uid://j2pi7jpfrqay"]
+[gd_scene load_steps=7 format=3 uid="uid://j2pi7jpfrqay"]
+
+[ext_resource type="PackedScene" uid="uid://ctts18vwepklq" path="res://player/player.tscn" id="1_x285w"]
+[ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/wall_glass_cabinet_med.tscn" id="2_klrw1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d7n1f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7n1f"]
+size = Vector3(7.9924316, 0.3446045, 8.023193)
+
+[sub_resource type="Sky" id="Sky_klrw1"]
+
+[sub_resource type="Environment" id="Environment_x285w"]
+sky = SubResource("Sky_klrw1")
 
 [node name="Lab" type="Node3D"]
+
+[node name="floor" type="Node3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor/StaticBody3D"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0.07553226, 0)
+mesh = SubResource("PlaneMesh_d7n1f")
+skeleton = NodePath("../../..")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08419609, 0)
+shape = SubResource("BoxShape3D_d7n1f")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("1_x285w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0842763, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x285w")
+
+[node name="WallGlassCabinetMed" parent="." instance=ExtResource("2_klrw1")]
+transform = Transform3D(0.9978806, 0, -0.06507218, 0, 1, 0, 0.06507218, 0, 0.9978806, -3.0636826, 0.6686183, -3.086428)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.19122012, 0.9815472, 0, -0.9815472, 0.19122012, 0, 11, 2.0236473)
+shadow_enabled = true

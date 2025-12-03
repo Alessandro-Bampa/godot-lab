@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://s77eaxtixisw"]
+
+[ext_resource type="PackedScene" uid="uid://14gkk6jstwer" path="res://gltf/wall_glass_cabinet/wall_glass_cabinet.glb" id="1_yich5"]
+[ext_resource type="Material" uid="uid://dqx4jqxjr64ck" path="res://gltf/wall_glass_cabinet/glass.tres" id="2_egswy"]
+[ext_resource type="Material" uid="uid://5r7gj8yvfqww" path="res://gltf/wall_glass_cabinet/frame.001.tres" id="2_m4tnf"]
+[ext_resource type="Material" uid="uid://xm1561660y7o" path="res://gltf/wall_glass_cabinet/handle.tres" id="3_m4tnf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m4tnf"]
+size = Vector3(0.13305664, 0.5806885, 0.37890625)
+
+[node name="wall_glass_cabinet" instance=ExtResource("1_yich5")]
+
+[node name="wall_cabinet" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_m4tnf")
+
+[node name="glass_door" parent="wall_cabinet" index="0"]
+surface_material_override/0 = ExtResource("2_egswy")
+surface_material_override/1 = ExtResource("3_m4tnf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wall_cabinet" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall_cabinet/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2892456, 0)
+shape = SubResource("BoxShape3D_m4tnf")
