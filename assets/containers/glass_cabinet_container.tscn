@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvu3uerbiqstc"]
+
+[ext_resource type="Script" uid="uid://c1nmw6indtux" path="res://assets/containers/GlassCabinetContainer.cs" id="1_l6cli"]
+[ext_resource type="PackedScene" uid="uid://chv43grar0hsa" path="res://assets/base/galss_cabinet.tscn" id="2_lmpy2"]
+
+[node name="GlassCabinetContainer" type="Node3D" node_paths=PackedStringArray("_animPlayer")]
+script = ExtResource("1_l6cli")
+_animPlayer = NodePath("galss_cabinet/AnimationPlayer")
+openAnimName = "door_open"
+
+[node name="galss_cabinet" parent="." instance=ExtResource("2_lmpy2")]
+
+[editable path="galss_cabinet"]

@@ -1,21 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://j2pi7jpfrqay"]
+[gd_scene load_steps=9 format=3 uid="uid://j2pi7jpfrqay"]
 
-[ext_resource type="PackedScene" uid="uid://ctts18vwepklq" path="res://player/player.tscn" id="1_x285w"]
-[ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/wall_glass_cabinet_med.tscn" id="2_klrw1"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_2btvg"]
+[ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/containers/wall_glass_cabinet_container.tscn" id="2_klrw1"]
+[ext_resource type="PackedScene" uid="uid://chv43grar0hsa" path="res://assets/base/galss_cabinet.tscn" id="3_2btvg"]
+[ext_resource type="PackedScene" uid="uid://cvu3uerbiqstc" path="res://assets/containers/glass_cabinet_container.tscn" id="4_vr6u3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_d7n1f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d7n1f"]
 size = Vector3(7.9924316, 0.3446045, 8.023193)
 
-[sub_resource type="Sky" id="Sky_klrw1"]
+[sub_resource type="Environment" id="Environment_2btvg"]
 
-[sub_resource type="Environment" id="Environment_x285w"]
-sky = SubResource("Sky_klrw1")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2btvg"]
+radius = 0.4
+height = 1.8
 
 [node name="Lab" type="Node3D"]
 
 [node name="floor" type="Node3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 metadata/_edit_lock_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
@@ -32,15 +36,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08419609, 0)
 shape = SubResource("BoxShape3D_d7n1f")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("1_x285w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0842763, 1)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.71909726, 0.13288061, 0.68208647, -0.6949094, 0.13750586, 0.705828, -8.468177e-10, -0.9815473, 0.19122015, -6.372512, 11, 2.0236473)
+shadow_enabled = true
+
+[node name="ProtoController" parent="." instance=ExtResource("2_2btvg")]
+transform = Transform3D(-0.1059864, 0, 0.9943676, 0, 1, 0, -0.9943676, 0, -0.1059864, 1.0693789, 0.19280678, -5.531498)
+
+[node name="galss_cabinet" parent="." instance=ExtResource("3_2btvg")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3.094, 0.24545288, -1.1176629)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_x285w")
+environment = SubResource("Environment_2btvg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3286927, 1.0402102, -7.2694907)
+mesh = SubResource("CapsuleMesh_2btvg")
+
+[node name="GlassCabinetContainer" parent="." instance=ExtResource("4_vr6u3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9558737, 0.26431882, -5.3727865)
 
 [node name="WallGlassCabinetMed" parent="." instance=ExtResource("2_klrw1")]
-transform = Transform3D(0.9978806, 0, -0.06507218, 0, 1, 0, 0.06507218, 0, 0.9978806, -3.0636826, 0.6686183, -3.086428)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.19122012, 0.9815472, 0, -0.9815472, 0.19122012, 0, 11, 2.0236473)
-shadow_enabled = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3265107, 1.1864331, -3.1862364)

@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://chv43grar0hsa"]
+
+[ext_resource type="PackedScene" uid="uid://5gfuxdf3kmer" path="res://gltf/glass_cabinet/galss_cabinet.glb" id="1_mpnt6"]
+[ext_resource type="Material" uid="uid://dqx4jqxjr64ck" path="res://gltf/wall_glass_cabinet/glass.tres" id="2_6jau1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qnyv6"]
+size = Vector3(0.6057129, 0.05292511, 1.4085083)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g864o"]
+size = Vector3(0.5974121, 1.9907227, 0.053833008)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1x54"]
+size = Vector3(0.05517578, 1.9908447, 1.4941406)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nhil1"]
+size = Vector3(0.50172424, 0.024154663, 1.3974609)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5crm5"]
+size = Vector3(0.04986865, 1.8984375, 0.7018738)
+
+[node name="galss_cabinet" instance=ExtResource("1_mpnt6")]
+
+[node name="CabinetBodyCollision" type="StaticBody3D" parent="glass_cabinet" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045166016, 0.030593872, -0.0005187988)
+shape = SubResource("BoxShape3D_qnyv6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045166016, 1.9677687, -0.0005187988)
+shape = SubResource("BoxShape3D_qnyv6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013480186, 1.0007324, 0.72437894)
+shape = SubResource("BoxShape3D_g864o")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0013480186, 1.0007324, -0.7264427)
+shape = SubResource("BoxShape3D_g864o")
+
+[node name="BackCollision" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27435744, 1.0100764, -0.00390625)
+shape = SubResource("BoxShape3D_u1x54")
+
+[node name="Shelf1" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000541687, 0.6945367, -0.0021972656)
+shape = SubResource("BoxShape3D_nhil1")
+
+[node name="Shelf2" type="CollisionShape3D" parent="glass_cabinet/CabinetBodyCollision" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000541687, 1.323064, -0.0021972656)
+shape = SubResource("BoxShape3D_nhil1")
+
+[node name="left_door" parent="glass_cabinet" index="1"]
+surface_material_override/1 = ExtResource("2_6jau1")
+
+[node name="LeftDoorCollision" type="StaticBody3D" parent="glass_cabinet/left_door" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="glass_cabinet/left_door/LeftDoorCollision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02505055, 0, -0.34902954)
+shape = SubResource("BoxShape3D_5crm5")
+
+[node name="right_door" parent="glass_cabinet" index="2"]
+surface_material_override/1 = ExtResource("2_6jau1")
+
+[node name="LeftDoorCollision" type="StaticBody3D" parent="glass_cabinet/right_door" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="glass_cabinet/right_door/LeftDoorCollision" index="0"]
+transform = Transform3D(0.9999996, 0, -2.2351742e-08, 0, 1, 0, 2.2351742e-08, 0, 0.9999996, -0.02505052, 0, 0.35103118)
+shape = SubResource("BoxShape3D_5crm5")
