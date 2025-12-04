@@ -1,6 +1,6 @@
 using Godot;
 
-public abstract partial class Openable : Node3D, IInteractable
+public abstract partial class Openable : Node, IInteractable
 {
     [Export]
     protected AnimationPlayer _animPlayer;

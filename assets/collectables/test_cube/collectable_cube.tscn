@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://uv1b3tdipiv0"]
+
+[ext_resource type="Script" uid="uid://h3q24ud8c2hv" path="res://assets/collectables/test_cube/CollectableCube.cs" id="1_l7e3u"]
+[ext_resource type="PackedScene" uid="uid://bqnt25d75o8jx" path="res://assets/exported_visual_only/small_objects/static_cube.tscn" id="2_75hjf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7e3u"]
+
+[node name="CollectableCube" type="RigidBody3D"]
+script = ExtResource("1_l7e3u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_l7e3u")
+
+[node name="StaticCube" parent="." instance=ExtResource("2_75hjf")]
+
+[editable path="StaticCube"]

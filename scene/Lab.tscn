@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://j2pi7jpfrqay"]
+[gd_scene load_steps=10 format=3 uid="uid://j2pi7jpfrqay"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_2btvg"]
-[ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/containers/wall_glass_cabinet_container.tscn" id="2_klrw1"]
-[ext_resource type="PackedScene" uid="uid://chv43grar0hsa" path="res://assets/base/galss_cabinet.tscn" id="3_2btvg"]
-[ext_resource type="PackedScene" uid="uid://cvu3uerbiqstc" path="res://assets/containers/glass_cabinet_container.tscn" id="4_vr6u3"]
+[ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/containers/wall_glass_cabinet_container/wall_glass_cabinet_container.tscn" id="2_klrw1"]
+[ext_resource type="PackedScene" uid="uid://chv43grar0hsa" path="res://assets/exported_visual_only/containers/galss_cabinet.tscn" id="3_2btvg"]
+[ext_resource type="PackedScene" uid="uid://cvu3uerbiqstc" path="res://assets/containers/glass_cabinet_container/glass_cabinet_container.tscn" id="4_vr6u3"]
+[ext_resource type="PackedScene" uid="uid://uv1b3tdipiv0" path="res://assets/collectables/test_cube/collectable_cube.tscn" id="5_rbdao"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_d7n1f"]
 
@@ -56,5 +57,8 @@ mesh = SubResource("CapsuleMesh_2btvg")
 [node name="GlassCabinetContainer" parent="." instance=ExtResource("4_vr6u3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9558737, 0.26431882, -5.3727865)
 
-[node name="WallGlassCabinetMed" parent="." instance=ExtResource("2_klrw1")]
+[node name="WallGlassCabinetContainer" parent="." instance=ExtResource("2_klrw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3265107, 1.1864331, -3.1862364)
+
+[node name="CollectableCube" parent="." instance=ExtResource("5_rbdao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.364247, 1.362496, -3.072939)

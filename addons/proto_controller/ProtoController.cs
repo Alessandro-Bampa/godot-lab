@@ -254,11 +254,11 @@ public partial class ProtoController : CharacterBody3D
         {
             if (_raycast.IsColliding())
             {
-                // 1. Otteniamo il nodo colpito fisicamente (es. lo StaticBody3D)
+                // Otteniamo il nodo colpito fisicamente (es. lo StaticBody3D)
                 // Lo castiamo a Node perché GetCollider restituisce un GodotObject
                 Node currentNode = _raycast.GetCollider() as Node;
 
-                // 2. Ciclo While per risalire la parentela
+                //Ciclo While per risalire la parentela
                 while (currentNode != null)
                 {
                     // Controllo: Questo nodo ha l'interfaccia?

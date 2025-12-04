@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxmunpxdi3st3"]
 
-[ext_resource type="Script" uid="uid://bhdsm26q5prkm" path="res://assets/containers/WallGlassCabinetContainer.cs" id="1_pl8dt"]
-[ext_resource type="PackedScene" uid="uid://s77eaxtixisw" path="res://assets/base/wall_glass_cabinet.tscn" id="1_puoge"]
+[ext_resource type="Script" uid="uid://bhdsm26q5prkm" path="res://assets/containers/wall_glass_cabinet_container/WallGlassCabinetContainer.cs" id="1_pl8dt"]
+[ext_resource type="PackedScene" uid="uid://s77eaxtixisw" path="res://assets/exported_visual_only/containers/wall_glass_cabinet.tscn" id="1_puoge"]
 
 [node name="WallGlassCabinetContainer" type="Node3D" node_paths=PackedStringArray("_animPlayer")]
 script = ExtResource("1_pl8dt")
