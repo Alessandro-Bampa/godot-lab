@@ -77,5 +77,10 @@ public abstract partial class Openable : Node, IInteractable
 
     public abstract void OnOpen();
     public abstract void OnClose();
+
+    public string UIMessage()
+    {
+        return "Open";
+    }
 }
 

@@ -15,4 +15,9 @@ public abstract partial class Collectable : Node, IInteractable
     }
 
 	public abstract void OnCollect();
+
+    public string UIMessage()
+    {
+        return "Take";
+    }
 }

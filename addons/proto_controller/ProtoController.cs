@@ -37,6 +37,7 @@ public partial class ProtoController : CharacterBody3D
     [Export] public string InputFreefly = "freefly";
     [Export] public string InputInteract = "interact";
 
+
     private bool _mouseCaptured = false;
     private Vector2 _lookRotation;
     private float _moveSpeed = 0.0f;
@@ -246,6 +247,7 @@ public partial class ProtoController : CharacterBody3D
             GD.PushError("Freefly disabled. No InputAction found for InputFreefly: " + InputFreefly);
             CanFreefly = false;
         }
+
     }
 
     private void RayCastChecks()
@@ -266,7 +268,7 @@ public partial class ProtoController : CharacterBody3D
                     {
                         GD.Print($"Interazione trovata su: {currentNode.Name}");
                         interactable.Interact();
-                        return; // Abbiamo fatto l'azione, usciamo dal metodo
+                        return;
                     }
 
                     // Se non è interagibile, passiamo al padre e ripetiamo il ciclo

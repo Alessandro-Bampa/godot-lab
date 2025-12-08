@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce23hiu88mysu"]
+
+[ext_resource type="PackedScene" uid="uid://b7p4klrs4tkk6" path="res://gltf/cola_can/cola_can.glb" id="1_2vqw5"]
+
+[node name="cola_can" instance=ExtResource("1_2vqw5")]

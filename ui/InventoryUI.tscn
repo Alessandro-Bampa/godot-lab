@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgpvjid61va2h"]
+
+[ext_resource type="Script" uid="uid://4ybqsvk31mfm" path="res://ui/InventoryUI.cs" id="1_w7o80"]
+
+[node name="InventoryUi" type="Control" node_paths=PackedStringArray("ContainerGrid")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_w7o80")
+ContainerGrid = NodePath("Panel/GridContainer")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

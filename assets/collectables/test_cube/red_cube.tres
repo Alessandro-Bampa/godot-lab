@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://bwtbr23221xtk"]
+
+[ext_resource type="Script" uid="uid://hlhpsb62huuo" path="res://resources/Items/ItemData.cs" id="1_n7mh2"]
+
+[resource]
+script = ExtResource("1_n7mh2")
+DisplayName = "Red Cube"
+Description = "A red Cube"
+metadata/_custom_type_script = "uid://hlhpsb62huuo"
