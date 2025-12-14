@@ -10,4 +10,10 @@ openAnimName = "glass_doorAction"
 
 [node name="wall_glass_cabinet" parent="." instance=ExtResource("1_puoge")]
 
+[node name="wall_cabinet" parent="wall_glass_cabinet" index="0"]
+cast_shadow = 0
+
+[node name="glass_door" parent="wall_glass_cabinet/wall_cabinet" index="0"]
+cast_shadow = 0
+
 [editable path="wall_glass_cabinet"]

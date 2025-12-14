@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://b545vfuahgeec"]
+
+[ext_resource type="Texture2D" uid="uid://c1g028lj6gruh" path="res://resources/Items/Backpacks/bag.png" id="1_j4rp6"]
+[ext_resource type="Script" uid="uid://bp0em3xbihvnm" path="res://resources/Items/InventoryItemInstance.cs" id="1_rtm4l"]
+[ext_resource type="Script" uid="uid://dha4t5wwc80mh" path="res://resources/Items/InventoryData.cs" id="2_j4rp6"]
+[ext_resource type="Script" uid="uid://hlhpsb62huuo" path="res://resources/Items/ItemData.cs" id="3_tbmpo"]
+
+[sub_resource type="Resource" id="Resource_miobj"]
+script = ExtResource("2_j4rp6")
+GridWidth = 5
+metadata/_custom_type_script = "uid://dha4t5wwc80mh"
+
+[resource]
+script = ExtResource("3_tbmpo")
+Name = "Zaino di Test"
+Description = "Uno zaino robusto 5x5"
+Icon = ExtResource("1_j4rp6")
+Width = 2
+Height = 3
+InternalInventory = SubResource("Resource_miobj")
+metadata/_custom_type_script = "uid://hlhpsb62huuo"

@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://1m5pehkt2up2"]
+[gd_scene load_steps=3 format=3 uid="uid://1m5pehkt2up2"]
 
-[ext_resource type="Script" uid="uid://ctgappp7vi1vj" path="res://scripts/CollectAndAddToInvetory.cs" id="1_gqyvy"]
 [ext_resource type="PackedScene" uid="uid://ce23hiu88mysu" path="res://assets/exported_visual_only/small_objects/cola_can.tscn" id="2_5iw6b"]
-[ext_resource type="Resource" uid="uid://53l3snss778b" path="res://assets/collectables/tin_can/tin_can.tres" id="2_lgrx1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_gqyvy"]
 height = 0.1499939
@@ -10,8 +8,6 @@ radius = 0.030761719
 
 [node name="TinCan" type="RigidBody3D"]
 mass = 0.5
-script = ExtResource("1_gqyvy")
-ItemReference = ExtResource("2_lgrx1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07517595, 0)

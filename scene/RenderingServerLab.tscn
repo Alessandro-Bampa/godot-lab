@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca3c0f23tb5dk"]
+
+[ext_resource type="Script" uid="uid://c0s35d4xvotk" path="res://scene/RenderingServerLab.cs" id="1_goysf"]
+
+[node name="RenderingServerLab" type="Node3D"]
+script = ExtResource("1_goysf")

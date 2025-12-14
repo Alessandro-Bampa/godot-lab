@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0dp66pokfodq"]
+
+[ext_resource type="Script" uid="uid://bxgb2igjsqan3" path="res://ui/InventoryGridUI.cs" id="1_beicp"]
+[ext_resource type="PackedScene" uid="uid://yjs8h4w0ft8d" path="res://ui/InventoryItem.tscn" id="2_ivlal"]
+
+[node name="InventoryGrid" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_beicp")
+ItemScene = ExtResource("2_ivlal")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1764706, 0.1764706, 0.1764706, 0.7176471)
+
+[node name="GridItems" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

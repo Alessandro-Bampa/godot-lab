@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://j2pi7jpfrqay"]
+[gd_scene load_steps=14 format=3 uid="uid://j2pi7jpfrqay"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_2btvg"]
 [ext_resource type="PackedScene" uid="uid://dxmunpxdi3st3" path="res://assets/containers/wall_glass_cabinet_container/wall_glass_cabinet_container.tscn" id="2_klrw1"]
@@ -13,11 +13,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_d7n1f"]
 size = Vector3(7.9924316, 0.3446045, 8.023193)
 
-[sub_resource type="Environment" id="Environment_2btvg"]
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2btvg"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="Environment" id="Environment_2btvg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_u1orw"]
+flip_faces = true
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_u1orw"]
+size = Vector3(24.742823, 13.100944, 13.862189)
 
 [node name="Lab" type="Node3D"]
 
@@ -40,21 +46,22 @@ shape = SubResource("BoxShape3D_d7n1f")
 metadata/_edit_lock_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.71909726, 0.13288061, 0.68208647, -0.6949094, 0.13750586, 0.705828, -8.468177e-10, -0.9815473, 0.19122015, -6.372512, 11, 2.0236473)
+transform = Transform3D(0.7190973, 0.13288061, 0.6820864, -0.69490945, 0.13750583, 0.70582795, -8.468178e-10, -0.9815472, 0.19122006, -6.372512, 19.161295, 2.0236473)
 shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3286927, 1.0402102, -7.2694907)
+mesh = SubResource("CapsuleMesh_2btvg")
 
 [node name="ProtoController" parent="." instance=ExtResource("2_2btvg")]
 transform = Transform3D(-0.1059864, 0, 0.9943676, 0, 1, 0, -0.9943676, 0, -0.1059864, 1.0693789, 0.19280678, -5.531498)
+CanFreefly = true
 
 [node name="galss_cabinet" parent="." instance=ExtResource("3_2btvg")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3.094, 0.24545288, -1.1176629)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2btvg")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3286927, 1.0402102, -7.2694907)
-mesh = SubResource("CapsuleMesh_2btvg")
 
 [node name="GlassCabinetContainer" parent="." instance=ExtResource("4_vr6u3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9558737, 0.26431882, -5.3727865)
@@ -72,3 +79,11 @@ freeze = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryUi" parent="UI" instance=ExtResource("7_u1orw")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(25, 0, 0, 0, 10, 0, 0, 0, 3, -3.914011, 1.713052, 5.0931506)
+mesh = SubResource("QuadMesh_u1orw")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4579868, 5.267455, -1.9918926)
+occluder = SubResource("BoxOccluder3D_u1orw")

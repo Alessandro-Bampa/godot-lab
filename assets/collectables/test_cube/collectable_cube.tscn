@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://uv1b3tdipiv0"]
+[gd_scene load_steps=3 format=3 uid="uid://uv1b3tdipiv0"]
 
-[ext_resource type="Script" uid="uid://ctgappp7vi1vj" path="res://scripts/CollectAndAddToInvetory.cs" id="1_l7e3u"]
-[ext_resource type="Resource" uid="uid://bwtbr23221xtk" path="res://assets/collectables/test_cube/red_cube.tres" id="2_2vxte"]
 [ext_resource type="PackedScene" uid="uid://bqnt25d75o8jx" path="res://assets/exported_visual_only/small_objects/static_cube.tscn" id="2_75hjf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7e3u"]
 
 [node name="CollectableCube" type="RigidBody3D"]
-script = ExtResource("1_l7e3u")
-ItemReference = ExtResource("2_2vxte")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_l7e3u")

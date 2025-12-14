@@ -16,7 +16,7 @@ public partial class CollectAndAddToInvetory : Collectable
 
         if (InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.AddItem(ItemReference, Quantity);
+            //InventoryManager.Instance.AddItem(ItemReference, Quantity);
         }
     }
 
