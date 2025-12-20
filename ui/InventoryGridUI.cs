@@ -32,6 +32,17 @@ public partial class InventoryGridUI : Control
         if (InventoryData != null) SetInventoryData(InventoryData);
     }
 
+    public override void _ExitTree()
+    {
+        // È fondamentale disiscriversi, altrimenti la Resource InventoryData
+        // proverà a chiamare questo metodo anche dopo che la UI è stata distrutta.
+        if (InventoryData != null)
+        {
+            InventoryData.InventoryUpdated -= OnInventoryUpdated;
+        }
+        base._ExitTree();
+    }
+
     public void SetInventoryData(InventoryData data)
     {
         if (InventoryData != null) InventoryData.InventoryUpdated -= OnInventoryUpdated;
@@ -79,6 +90,8 @@ public partial class InventoryGridUI : Control
 
     private void OnInventoryUpdated()
     {
+        if (!IsInstanceValid(this) || !IsInstanceValid(_itemsContainer)) return;
+
         // Pulisci vecchi oggetti
         foreach (var child in _itemsContainer.GetChildren())
             child.QueueFree();
@@ -142,7 +155,10 @@ public partial class InventoryGridUI : Control
         // Recupera l'ItemData sorgente (che venga dalla griglia o dallo slot equip)
         ItemData sourceItemData = dragInfo.ItemInstance != null ? dragInfo.ItemInstance.SourceItem : dragInfo.SourceEquipmentSlot?.EquippedItem;
         if (sourceItemData == null) return;
-
+        if (sourceItemData.InternalInventory != null && sourceItemData.InternalInventory.GetInstanceId() == InventoryData.GetInstanceId()) {
+            GD.Print("stai tentando di inserire un container dentro a se stesso");
+            return;
+        }
         // 1. RIMUOVI DALL'ORIGINE (Logica Condizionale)
         if (dragInfo.OriginalInventory != null)
         {

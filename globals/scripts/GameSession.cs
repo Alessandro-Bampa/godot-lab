@@ -39,14 +39,20 @@ public partial class GameSession : Node
         // ESEMPIO: Equipaggiamo uno zaino di base all'inizio
         // Carichiamo il template base
         var baseBackpack = GD.Load<ItemData>("res://resources/Items/Backpacks/BasicBackpack.tres");
+        var baseBackpack2 = GD.Load<ItemData>("res://resources/Items/Backpacks/BasicBackpack.tres");
+        var baseBackpack3 = GD.Load<ItemData>("res://resources/Items/Backpacks/BasicBackpack.tres");
 
         if (baseBackpack != null)
         {
             // 2. IMPORTANTE: Duplica con 'true' per copiare anche l'inventario interno
             var myBackpack = (ItemData)baseBackpack.Duplicate(true);
+            var myBackpack2 = (ItemData)baseBackpack2.Duplicate(true);
+            var myBackpack3 = (ItemData)baseBackpack3.Duplicate(true);
 
             // 3. Inseriscilo nello slot "Backpack" (deve coincidere con SlotType nell'editor)
             ActiveData.Equipment["Backpack"] = myBackpack;
+            ActiveData.Equipment["Head"] = myBackpack2;
+            ActiveData.Equipment["Body"] = myBackpack3;
 
             GD.Print("Zaino equipaggiato di default!");
         }

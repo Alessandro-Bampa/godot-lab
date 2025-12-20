@@ -50,7 +50,7 @@ public partial class EquipmentSlot : Control
         var preview = new TextureRect();
         preview.Texture = EquippedItem.Icon;
         preview.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-        preview.Size = new Vector2(40, 40); // Dimensione fissa anteprima
+        preview.Size = new Vector2(EquippedItem.Width * 40, EquippedItem.Height * 40); // 40 è la dimensione della tile di default
         preview.Modulate = new Color(1, 1, 1, 0.5f);
         SetDragPreview(preview);
 
