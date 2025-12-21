@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://8tawo72c77e1"]
+
+[ext_resource type="Script" uid="uid://dpdhtmtgcxy0f" path="res://ui/ContainerWindow.cs" id="1_i1qng"]
+[ext_resource type="PackedScene" uid="uid://d0dp66pokfodq" path="res://ui/InventoryGrid.tscn" id="2_kbws3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbws3"]
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+
+[node name="ContainerWindow" type="PanelContainer"]
+anchors_preset = -1
+anchor_bottom = 0.043
+offset_bottom = 6.1359997
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbws3")
+script = ExtResource("1_i1qng")
+GridPrefab = ExtResource("2_kbws3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.12156863, 0.34509805, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PlaceHolder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/Header/HBoxContainer"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "X"
+
+[node name="GridContainer" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2

@@ -59,15 +59,19 @@ public partial class InventoryGridUI : Control
         OnInventoryUpdated();
     }
 
-    // --- NUOVO: Disegna le righe della griglia ---
     public override void _Draw()
     {
         if (InventoryData == null) return;
 
-        // Colore delle righe (es. Nero semitrasparente)
-        var gridColor = new Color(0, 0, 0, 0.5f);
+        // 1. DISEGNA LO SFONDO (Prima delle linee!)
+        // Disegniamo un rettangolo che copre tutta l'area
+        Rect2 backgroundRect = new Rect2(0, 0, Size.X, Size.Y);
+        DrawRect(backgroundRect, new Color(0.2f, 0.2f, 0.2f, 1.0f)); // Colore Grigio Scuro Opaco
 
-        // Disegna linee verticali
+        // 2. DISEGNA LE RIGHE (Sopra lo sfondo)
+        var gridColor = new Color(0, 0, 0, 0.5f); // Nero semitrasparente
+
+        // Linee Verticali
         for (int x = 0; x <= InventoryData.GridWidth; x++)
         {
             DrawLine(
@@ -77,7 +81,7 @@ public partial class InventoryGridUI : Control
             );
         }
 
-        // Disegna linee orizzontali
+        // Linee Orizzontali
         for (int y = 0; y <= InventoryData.GridHeight; y++)
         {
             DrawLine(
@@ -188,6 +192,31 @@ public partial class InventoryGridUI : Control
                 dragInfo.OriginalInventory.AddItem(dragInfo.ItemInstance.SourceItem, dragInfo.ItemInstance.GridX, dragInfo.ItemInstance.GridY);
             }
             // Se veniva dall'equipaggiamento e non c'è spazio, non facciamo nulla (resta equipaggiato)
+        }
+    }
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        // Doppio click sinistro
+        if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left && mb.DoubleClick)
+        {
+            int gridX = (int)(mb.Position.X / TileSize);
+            int gridY = (int)(mb.Position.Y / TileSize);
+
+            var itemInstance = InventoryData.GetItemAt(gridX, gridY);
+
+            // Se abbiamo cliccato su un oggetto e questo oggetto è un contenitore
+            if (itemInstance != null && itemInstance.SourceItem.InternalInventory != null)
+            {
+                // Apri la finestra tramite il Manager
+                InventoryManager.Instance.UIManager.OpenExternalContainer(
+                    itemInstance.SourceItem.InternalInventory,
+                    itemInstance.SourceItem.Name
+                );
+
+                // Consuma l'evento per evitare altri effetti collaterali
+                GetViewport().SetInputAsHandled();
+            }
         }
     }
 }

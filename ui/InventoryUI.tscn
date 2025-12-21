@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgpvjid61va2h"]
+[gd_scene load_steps=5 format=3 uid="uid://bgpvjid61va2h"]
 
 [ext_resource type="Script" uid="uid://dbkqlhx4002vq" path="res://ui/InventoryUIManager.cs" id="1_xo8ky"]
 [ext_resource type="Script" uid="uid://dc1wv2haa7y36" path="res://ui/EquipmentSlot.cs" id="2_kj1u8"]
 [ext_resource type="PackedScene" uid="uid://d0dp66pokfodq" path="res://ui/InventoryGrid.tscn" id="3_35csa"]
-[ext_resource type="Texture2D" uid="uid://b4q7slrrdmmpl" path="res://ui/icons/inventory_helmet.png" id="4_slklx"]
-[ext_resource type="Texture2D" uid="uid://b3fdrve1mxu3p" path="res://ui/icons/inventory_armor.png" id="5_ens2f"]
-[ext_resource type="Texture2D" uid="uid://b2rk1bkbdj485" path="res://ui/icons/inventory_backpack.png" id="6_l4y1k"]
+[ext_resource type="PackedScene" uid="uid://8tawo72c77e1" path="res://ui/ContainerWindow.tscn" id="3_kj1u8"]
 
 [node name="InventoryUi" type="Control" node_paths=PackedStringArray("RightPanelContainer", "LeftPanelContainer", "VicinityGrid")]
 layout_mode = 3
@@ -19,64 +17,56 @@ RightPanelContainer = NodePath("HBoxContainer/Inventory/ContainerList")
 LeftPanelContainer = NodePath("HBoxContainer/Equip")
 VicinityGrid = NodePath("HBoxContainer/Proximity/InventoryGrid")
 GridPrefab = ExtResource("3_35csa")
+ContainerWindowPrefab = ExtResource("3_kj1u8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Equip" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Head" type="PanelContainer" parent="HBoxContainer/Equip"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 script = ExtResource("2_kj1u8")
 SlotType = "Head"
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer/Equip/Head"]
 layout_mode = 2
-texture = ExtResource("4_slklx")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="Body" type="Panel" parent="HBoxContainer/Equip"]
-custom_minimum_size = Vector2(0, 100)
+[node name="Body" type="PanelContainer" parent="HBoxContainer/Equip"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 script = ExtResource("2_kj1u8")
 SlotType = "Body"
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer/Equip/Body"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_ens2f")
-expand_mode = 1
-
-[node name="Backpack" type="Panel" parent="HBoxContainer/Equip"]
-custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Backpack" type="PanelContainer" parent="HBoxContainer/Equip"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+size_flags_horizontal = 4
 script = ExtResource("2_kj1u8")
 SlotType = "Backpack"
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer/Equip/Backpack"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("6_l4y1k")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Proximity" type="CenterContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(500, 0)

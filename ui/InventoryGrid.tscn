@@ -9,16 +9,6 @@ anchors_preset = 0
 script = ExtResource("1_beicp")
 ItemScene = ExtResource("2_ivlal")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.1764706, 0.1764706, 0.1764706, 0.7176471)
-
 [node name="GridItems" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -27,3 +17,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ContainerName" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
