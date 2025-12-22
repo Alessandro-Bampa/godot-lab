@@ -46,20 +46,36 @@ public partial class EquipmentSlot : Control
         // Se non c'è nulla equipaggiato, non trascinare
         if (EquippedItem == null) return default;
 
-        // Crea anteprima visiva
-        var preview = new TextureRect();
-        preview.Texture = EquippedItem.Icon;
-        preview.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
-        preview.Size = new Vector2(EquippedItem.Width * 40, EquippedItem.Height * 40); // 40 è la dimensione della tile di default
-        preview.Modulate = new Color(1, 1, 1, 0.5f);
-        SetDragPreview(preview);
+        // --- INIZIO CODICE CENTRATURA PREVIEW ---
 
-        // Prepara i dati per la griglia
+        // Dimensione fissa per le icone degli slot (di solito 40x40 o TileSize)
+        Vector2 previewSize = new Vector2(EquippedItem.Width * 40, EquippedItem.Height * 40); // 40 è la dimensione della tile di default
+
+        // 1. Contenitore Pivot
+        var previewContainer = new Control();
+
+        // 2. Icona
+        var previewIcon = new TextureRect();
+        previewIcon.Texture = EquippedItem.Icon;
+        previewIcon.ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize;
+        previewIcon.Size = previewSize;
+        previewIcon.Modulate = new Color(1, 1, 1, 0.5f);
+
+        // 3. Centratura (Offset negativo)
+        previewIcon.Position = -previewSize / 2;
+
+        // 4. Imposta
+        previewContainer.AddChild(previewIcon);
+        SetDragPreview(previewContainer);
+
+        // --- FINE CODICE CENTRATURA ---
+
         var dragInfo = new InventoryGridUI.DragDataInfo
         {
-            ItemInstance = null,          // Non è in una griglia
-            OriginalInventory = null,     // Non ha un inventario griglia
-            SourceEquipmentSlot = this    // Riferimento a questo slot
+            ItemInstance = null,
+            OriginalInventory = null,
+            SourceEquipmentSlot = this,
+            PreviewControl = previewContainer
         };
 
         return dragInfo;

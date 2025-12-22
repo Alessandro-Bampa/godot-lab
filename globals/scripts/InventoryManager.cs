@@ -17,6 +17,8 @@ public partial class InventoryManager : Node
 
     [Export] public InventoryUIManager UIManager;
 
+    public bool IsOpen => _isOpen;
+
     private bool _isOpen;
 
     public override void _Ready()
@@ -42,17 +44,18 @@ public partial class InventoryManager : Node
     {
         _isOpen = !_isOpen;
 
-        // Gestione Pausa Gioco
-        //GetTree().Paused = _isOpen;
-
-        // Gestione Mouse
-        Input.MouseMode = _isOpen ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
-
         EmitSignal(SignalName.InventoryToggled, _isOpen);
 
         if (_isOpen)
         {
+            Input.MouseMode = Input.MouseModeEnum.Confined;
+
             RefreshUI();
+        }
+        else
+        {
+            // quando chiudo l'inventario
+            Input.MouseMode = Input.MouseModeEnum.Captured;
         }
     }
 

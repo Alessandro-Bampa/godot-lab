@@ -10,6 +10,8 @@ public partial class InventoryData : Resource
 
     [Signal] public delegate void InventoryUpdatedEventHandler();
 
+    public InventoryData ParentInventory { get; set; } = null;
+
     // Ritorna l'oggetto in una specifica coordinata, se presente
     public InventoryItemInstance GetItemAt(int x, int y)
     {
@@ -25,21 +27,29 @@ public partial class InventoryData : Resource
     }
 
     // Controlla se c'è spazio per un oggetto
-    public bool CanPlaceItem(ItemData item, int x, int y, InventoryItemInstance ignoreItem = null)
+    public bool CanPlaceItem(ItemData item, int x, int y, InventoryItemInstance ignoreItem = null, bool rotated = false)
     {
-        // 1. Controllo bordi
-        if (x < 0 || y < 0 || x + item.Width > GridWidth || y + item.Height > GridHeight)
+        // 1. Calcola le dimensioni del NUOVO oggetto che stiamo provando a mettere
+        int w = rotated ? item.Height : item.Width;
+        int h = rotated ? item.Width : item.Height;
+
+        // Controllo bordi
+        if (x < 0 || y < 0 || x + w > GridWidth || y + h > GridHeight)
             return false;
 
-        // 2. Rettangolo del nuovo oggetto
-        Rect2I newRect = new Rect2I(x, y, item.Width, item.Height);
+        Rect2I newRect = new Rect2I(x, y, w, h);
 
-        // 3. Controllo collisioni con altri oggetti
+        // 2. Controllo collisioni con gli oggetti ESISTENTI
         foreach (var existingItem in Items)
         {
-            if (existingItem == ignoreItem) continue; // Ignora se stesso (utile per lo spostamento)
+            if (existingItem == ignoreItem) continue;
 
-            Rect2I existingRect = new Rect2I(existingItem.GridX, existingItem.GridY, existingItem.SourceItem.Width, existingItem.SourceItem.Height);
+            // --- QUI STA LA MAGIA ---
+            // Usiamo le dimensioni dinamiche dell'istanza esistente (che potrebbe essere ruotata)
+            int existingW = existingItem.Rotated ? existingItem.SourceItem.Height : existingItem.SourceItem.Width;
+            int existingH = existingItem.Rotated ? existingItem.SourceItem.Width : existingItem.SourceItem.Height;
+
+            Rect2I existingRect = new Rect2I(existingItem.GridX, existingItem.GridY, existingW, existingH);
 
             if (newRect.Intersects(existingRect))
                 return false;
@@ -47,10 +57,26 @@ public partial class InventoryData : Resource
         return true;
     }
 
-    public void AddItem(ItemData item, int x, int y)
+    public void AddItem(ItemData item, int x, int y, bool rotated = false)
     {
-        var newItem = new InventoryItemInstance(item, x, y);
+        var newItem = new InventoryItemInstance(item, x, y, rotated);
         Items.Add(newItem);
+
+        if (item.InternalInventory != null)
+        {
+            item.InternalInventory.ParentInventory = this;
+        }
+
+        EmitSignal(SignalName.InventoryUpdated);
+    }
+
+    public void AddItem(InventoryItemInstance newItem)
+    {
+        Items.Add(newItem);
+        if (newItem.SourceItem.InternalInventory != null)
+        {
+            newItem.SourceItem.InternalInventory.ParentInventory = this;
+        }
         EmitSignal(SignalName.InventoryUpdated);
     }
 
@@ -59,6 +85,10 @@ public partial class InventoryData : Resource
         if (Items.Contains(item))
         {
             Items.Remove(item);
+            if (item.SourceItem.InternalInventory != null)
+            {
+                item.SourceItem.InternalInventory.ParentInventory = null;
+            }
             EmitSignal(SignalName.InventoryUpdated);
         }
     }

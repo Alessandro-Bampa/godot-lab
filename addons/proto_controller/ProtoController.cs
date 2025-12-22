@@ -64,6 +64,7 @@ public partial class ProtoController : CharacterBody3D
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (InventoryManager.Instance != null && InventoryManager.Instance.IsOpen) return;
         // Mouse capturing
         if (Input.IsMouseButtonPressed(MouseButton.Left))
         {
