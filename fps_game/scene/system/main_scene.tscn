@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://nt05s8cp2tv8"]
+
+[ext_resource type="Script" uid="uid://c374upcagm4it" path="res://fps_game/scene/system/GameManager.cs" id="1_ewlhn"]
+[ext_resource type="PackedScene" uid="uid://bmn5u3gaoor4s" path="res://fps_game/scene/system/user_interface.tscn" id="1_m4qwn"]
+[ext_resource type="PackedScene" uid="uid://dyrv5r0x54tt7" path="res://fps_game/level/prototype_level.tscn" id="2_474u7"]
+
+[node name="MainScene" type="Node"]
+
+[node name="Managers" type="Node" parent="."]
+
+[node name="GameManager" type="Node" parent="Managers"]
+script = ExtResource("1_ewlhn")
+
+[node name="CurrentLevel" type="Node3D" parent="."]
+
+[node name="PrototypeLevel" parent="CurrentLevel" instance=ExtResource("2_474u7")]
+
+[node name="UserInterface" parent="." instance=ExtResource("1_m4qwn")]

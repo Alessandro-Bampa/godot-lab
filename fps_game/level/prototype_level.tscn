@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyrv5r0x54tt7"]
+
+[ext_resource type="PackedScene" uid="uid://bc1d8g1unrbny" path="res://fps_game/scene/player/player_controller.tscn" id="1_jrrx3"]
+[ext_resource type="PackedScene" uid="uid://1mnu8bivnla4" path="res://fps_game/environment/world_environment.tscn" id="2_111ae"]
+[ext_resource type="PackedScene" uid="uid://bmn5u3gaoor4s" path="res://fps_game/scene/system/user_interface.tscn" id="3_111ae"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrrx3"]
+albedo_color = Color(0.18924019, 0.25396055, 0.35936514, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hxc7n"]
+material = SubResource("StandardMaterial3D_jrrx3")
+size = Vector2(30, 30)
+orientation = 1
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_n3g43"]
+points = PackedVector3Array(15.238096, 0.23809525, 15.238096, -15.238096, -0.23809525, -15.238096, -15.238096, 0.23809525, -15.238096, 15.238096, -0.23809525, -15.238096, -15.238096, -0.23809525, 15.238096, -15.238096, 0.23809525, 15.238096, 15.238096, 0.23809525, -15.238096, 15.238096, -0.23809525, 15.238096)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_111ae"]
+albedo_color = Color(0.79607844, 0.21568628, 0.23529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_111ae"]
+material = SubResource("StandardMaterial3D_111ae")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jrrx3"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="PrototypeLevel" type="Node3D"]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("2_111ae")]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Geometry"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/Floor"]
+mesh = SubResource("QuadMesh_hxc7n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22, 0)
+shape = SubResource("ConvexPolygonShape3D_n3g43")
+
+[node name="CrouchCheck" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry/CrouchCheck"]
+mesh = SubResource("BoxMesh_111ae")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/CrouchCheck"]
+shape = SubResource("ConvexPolygonShape3D_jrrx3")
+
+[node name="PlayerController" parent="." instance=ExtResource("1_jrrx3")]
+transform = Transform3D(-0.1366838, 0, 0.9906147, 0, 1, 0, -0.9906147, 0, -0.1366838, 3.2129006, 0.8835635, 0)
+
+[node name="UserInterface" parent="." instance=ExtResource("3_111ae")]
